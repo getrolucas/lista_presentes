@@ -3,6 +3,8 @@ import pandas as pd
 import time
 from streamlit_gsheets import GSheetsConnection
 
+st.cache_data.clear()
+
 # criando conexão ao "banco"
 conn = st.connection("gsheets", type=GSheetsConnection)
 
@@ -65,7 +67,6 @@ if st.button("Enviar"):
             f"{nome}, sua opção {item_selecionado} foi enviada para os papais. \n Aguardamos você!")
     
         time.sleep(5)
-        
         st.cache_data.clear()
         st.rerun()
         
