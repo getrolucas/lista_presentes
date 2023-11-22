@@ -4,9 +4,9 @@ import csv
 import time
 
 # lendo dados armazenados
-lista = pd.read_csv("lista.csv", index_col="item", encoding="ANSI").query("quantidade > 0")
+lista = pd.read_csv("lista.csv", index_col="item").query("quantidade > 0")
 
-selecionados = pd.read_csv("selecionados.csv", encoding="ANSI")
+selecionados = pd.read_csv("selecionados.csv")
 
 # lista de valores para check_box
 presentes = lista.index.to_list()
