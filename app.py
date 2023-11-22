@@ -53,12 +53,9 @@ item_selecionado = st.selectbox('', presentes, placeholder="Escolha uma opção"
 if st.button("Enviar"):
     if nome:
         dados = pd.DataFrame({"nome":[nome], "item":[item_selecionado]})
-
-        st.write(dados)
         data_update = pd.concat((df_selecionados, dados), ignore_index=True)
-        st.write(data_update)
         conn.update(data=data_update)
-        
+
         st.success(f"{nome}, sua opção {item_selecionado} foi enviada para os papais")
     
         time.sleep(5)
