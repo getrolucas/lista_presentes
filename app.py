@@ -33,7 +33,7 @@ if st.button("Enviar"):
         salvar_dados(nome, selec_presentes)
         st.success(f"{nome}, suas opção {selec_presentes} foi enviada para os papais")
         lista.loc[selec_presentes, "quantidade"] = lista.loc[selec_presentes, "quantidade"] - 1
-        lista.to_csv("lista.csv", encoding="ANSI")
+        lista.to_csv("lista.csv")
         
         time.sleep(3)
         st.rerun()
