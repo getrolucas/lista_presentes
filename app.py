@@ -2,18 +2,20 @@ import streamlit as st
 import pandas as pd
 import csv
 import time
+from streamlit_gsheets import GSheetsConnection
 
-# lendo dados armazenados
-lista = pd.read_csv("lista.csv", index_col="item").query("quantidade > 0")
+# Create a connection object.
+conn = st.connection("gsheets", type=GSheetsConnection)
 
-selecionados = pd.read_csv("selecionados.csv")
+df = conn.read()
 
-# lista de valores para check_box
-presentes = lista.index.to_list()
+
+st.write(df)
 
 # Interface do Streamlit
 st.title(":sun_with_face: :hibiscus: :gray[Chá da Luísa] :sunflower: :blossom:")
 
+'''
 # Seleção dos valores para as duas colunas
 st.subheader("Escreva seu nome")
 nome = st.text_input('',None, placeholder="Obrigatório")
@@ -41,3 +43,4 @@ if st.button("Enviar"):
     else:
         st.warning("Insira seu nome", icon="⚠️")
 
+'''
