@@ -9,7 +9,6 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 
 df = conn.read()
 
-
 st.write(df)
 
 # Interface do Streamlit
