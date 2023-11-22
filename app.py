@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import csv
 import time
-# teste
+
 # lendo dados armazenados
 lista = pd.read_csv("lista.csv", index_col="item", encoding="ANSI").query("quantidade > 0")
 
