@@ -40,7 +40,12 @@ df_lista['quantidade'] = df_lista.apply(ajustar_quantidades, axis=1)
 presentes = df_lista[df_lista["quantidade"] > 0]["item"].to_list()
 
 # interface do Streamlit
-st.title(":sun_with_face: :hibiscus: :gray[Chá da Luísa] :sunflower: :blossom:")
+text = "&#127774 &#127802 Chá da Luísa &#127799 &#127803"
+
+st.markdown(
+    f"<h1 style='text-align: center; color: red;'>{text}</h1>", 
+    unsafe_allow_html=True
+)
 
 # seleção dos valores para as duas colunas
 st.subheader("Escreva seu nome")
@@ -56,7 +61,8 @@ if st.button("Enviar"):
         data_update = pd.concat((df_selecionados, dados), ignore_index=True)
         conn.update(data=data_update)
 
-        st.success(f"{nome}, sua opção {item_selecionado} foi enviada para os papais")
+        st.success(
+            f"{nome}, sua opção {item_selecionado} foi enviada para os papais. \n Aguardamos você!")
     
         time.sleep(5)
         
