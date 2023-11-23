@@ -1,3 +1,4 @@
+# bibliotecas
 import streamlit as st
 import pandas as pd
 import time
@@ -45,7 +46,7 @@ presentes = df_lista[df_lista["quantidade"] > 0]["item"].to_list()
 text = "&#127774 &#127802 Chá da Luísa &#127799 &#127803"
 
 st.markdown(
-    f"<h1 style='text-align: center; color: red;'>{text}</h1>", 
+    f"<h1 style='text-align: center; color: pink;'>{text}</h1>", 
     unsafe_allow_html=True
 )
 
@@ -54,21 +55,24 @@ st.subheader("Escreva seu nome")
 nome = st.text_input('',None, placeholder="Obrigatório")
 
 st.subheader("Selecione um presentinho")
-item_selecionado = st.selectbox('', presentes, placeholder="Escolha uma opção")
+item_selecionado = st.selectbox('', ["Escolha uma opção"] + presentes)
 
 # Botão para salvar
 if st.button("Enviar"):
-    if nome:
-        dados = pd.DataFrame({"nome":[nome], "item":[item_selecionado]})
-        data_update = pd.concat((df_selecionados, dados), ignore_index=True)
-        conn.update(data=data_update)
+    if item_selecionado == "Escolha uma opção":
+        st.warning("Escolha uma opção de presente", icon="⚠️")
+    else:  
+        if nome:
+            dados = pd.DataFrame({"nome":[nome], "item":[item_selecionado]})
+            data_update = pd.concat((df_selecionados, dados), ignore_index=True)
+            conn.update(data=data_update)
 
-        st.success(
-            f"{nome}, sua opção {item_selecionado} foi enviada para os papais. \n Aguardamos você!")
-    
-        time.sleep(5)
-        st.cache_data.clear()
-        st.rerun()
+            st.success(
+                f"{nome}, sua opção {item_selecionado} foi enviada para os papais. Aguardamos você!")
         
-    else:
-        st.warning("Insira seu nome", icon="⚠️")
+            time.sleep(5)
+            st.cache_data.clear()
+            st.rerun()
+            
+        else:
+            st.warning("Insira seu nome", icon="⚠️")
